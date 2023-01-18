@@ -48,7 +48,7 @@ By default the web-ui is disabled, you can enable it with some more arguments:
 - `--joal.ui.secret-token="SECRET_TOKEN"`: use your own secret token here (this is some kind of a password, choose a complicated one).
 
 Once joal is started head to: `http://localhost:port/SECRET_OBFUSCATION_PATH/ui/` (obviously, replace `SECRET_OBFUSCATION_PATH`) by the value you had chosen
-The `joal.ui.path.prefix` might seems useless but it's actually **crucial** to set it as complex as possible to prevent peoples to know that joal is running on your server.
+The `joal.ui.path.prefix` might seems useless but it's actually **crucial** to set it as complex as possible to prevent people to know that joal is running on your server.
 
 If you want to use iframe you may also pass the `joal.iframe.enabled=true` argument. If you don't known what that is just ignore it.
 
@@ -72,7 +72,7 @@ Or the equivalent docker-compose service.
 version: "2"
 services:
   joal:
-    image: anthonyraymond/joal
+    image: anthonyraymond/joal:X.X.X
     container_name: joal
     restart: unless-stopped
     volumes:
@@ -82,8 +82,7 @@ services:
     command: ["--joal-conf=/data", "--spring.main.web-environment=true", "--server.port=PORT", "--joal.ui.path.prefix=SECRET_OBFUSCATION_PATH", "--joal.ui.secret-token=SECRET_TOKEN"]
 ```
 
-Multiple architectures are available at https://hub.docker.com/r/anthonyraymond/joal.
-If you want to run on arm (raspberry) replace `anthonyraymond/joal` with `anthonyraymond/joal:X.X.X-arm` where X.X.X are the desired version of joal.
+Replace the `X.X.X` in `anthonyraymond/joal:X.X.X` with the desired version of joal (all versions are available [here](https://hub.docker.com/r/anthonyraymond/joal/tags)).
 
 
 ## 3. Start seeding
@@ -128,13 +127,14 @@ Some non-supported browser might works, but they may be unsafe due to the lack o
 
 
 ## Community projects
-Those projects are maintained by their individual authors, if you have any question on how to use it use the corresponding repository to ask questions.
-- [Addon for Home Assistant](https://github.com/alexbelgium/hassio-addons/tree/master/joal) by [alexbelgium](https://github.com/alexbelgium) 
+Those projects are maintained by their individual authors, if you have any question on how to use it use the corresponding repository to ask questions. I do not offer any support nor responsability for these projets. But i want a say a special **thanks** to them for speinding some time on this project.
+- [Addon for Home Assistant](https://github.com/alexbelgium/hassio-addons/tree/master/joal) by [alexbelgium](https://github.com/alexbelgium)
+- [Ansible role](https://github.com/slundi/ansible-joal) by [slundi](https://github.com/slundi)
 
 
 # Thanks:
 This project use a modified version of the awesome [mpetazzoni/ttorrent](http://mpetazzoni.github.com/ttorrent/) library. Thanks to **mpetazzoni** for this.
-Also this project has benefited from the help of several peoples, see [Thanks.md](THANKS.md)
+Also this project has benefited from the help of several people, see [Thanks.md](THANKS.md)
 
 ## Supporters
 [![Thanks for providing Jetbrain license](readme-assets/jetbrains.svg)](https://www.jetbrains.com/?from=joal)

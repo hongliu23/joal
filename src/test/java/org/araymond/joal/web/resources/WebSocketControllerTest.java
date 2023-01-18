@@ -15,7 +15,7 @@ import org.araymond.joal.web.messages.incoming.config.ConfigIncomingMessage;
 import org.araymond.joal.web.messages.outgoing.impl.config.InvalidConfigPayload;
 import org.araymond.joal.web.services.JoalMessageSendingTemplate;
 import org.assertj.core.util.Maps;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.apache.commons.codec.binary.Base64;
 
@@ -39,8 +39,8 @@ public class WebSocketControllerTest {
         doReturn(config.getMinUploadRate()).when(configIncomingMessage).getMinUploadRate();
         doReturn(config.getMaxUploadRate()).when(configIncomingMessage).getMaxUploadRate();
         doReturn(config.getSimultaneousSeed()).when(configIncomingMessage).getSimultaneousSeed();
-        doReturn(config.getClientFileName()).when(configIncomingMessage).getClient();
-        doReturn(config.shouldKeepTorrentWithZeroLeechers()).when(configIncomingMessage).shouldKeepTorrentWithZeroLeechers();
+        doReturn(config.getClient()).when(configIncomingMessage).getClient();
+        doReturn(config.isKeepTorrentWithZeroLeechers()).when(configIncomingMessage).isKeepTorrentWithZeroLeechers();
         doReturn(config).when(configIncomingMessage).toAppConfiguration();
 
         controller.saveNewConf(configIncomingMessage);

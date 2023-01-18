@@ -1,6 +1,6 @@
 package org.araymond.joal.core.torrent.torrent;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,9 +34,9 @@ public class InfoHashTest {
 
     @Test
     public void shouldRemoveNonHumanReadableChars() {
-        final InfoHash infoHash = new InfoHash("a\u0001".getBytes());
+        final InfoHash infoHash = new InfoHash("a\u0001b\u0001\u0001cc".getBytes());
 
-        assertThat(infoHash.humanReadableValue()).isEqualTo("a");
+        assertThat(infoHash.getHumanReadable()).isEqualTo("abcc");
     }
 
 }

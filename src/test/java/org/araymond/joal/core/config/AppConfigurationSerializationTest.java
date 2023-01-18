@@ -3,7 +3,7 @@ package org.araymond.joal.core.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -67,8 +67,8 @@ public class AppConfigurationSerializationTest {
         assertThat(config.getMinUploadRate()).isEqualTo(180);
         assertThat(config.getMaxUploadRate()).isEqualTo(190);
         assertThat(config.getSimultaneousSeed()).isEqualTo(2);
-        assertThat(config.getClientFileName()).isEqualTo("azureus.client");
-        assertThat(config.shouldKeepTorrentWithZeroLeechers()).isEqualTo(false);
+        assertThat(config.getClient()).isEqualTo("azureus.client");
+        assertThat(config.isKeepTorrentWithZeroLeechers()).isEqualTo(false);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class AppConfigurationSerializationTest {
                 AppConfiguration.class
         );
 
-        assertThat(mapper.readValue(mapper.writeValueAsString(config), AppConfiguration.class)).isEqualToComparingFieldByField(config);
+        assertThat(mapper.readValue(mapper.writeValueAsString(config), AppConfiguration.class)).usingRecursiveComparison().isEqualTo(config);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AppConfigurationSerializationTest {
         assertThat(config.getMinUploadRate()).isEqualTo(180);
         assertThat(config.getMaxUploadRate()).isEqualTo(190);
         assertThat(config.getSimultaneousSeed()).isEqualTo(2);
-        assertThat(config.getClientFileName()).isEqualTo("azureus.client");
+        assertThat(config.getClient()).isEqualTo("azureus.client");
     }
 
 }

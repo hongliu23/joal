@@ -2,9 +2,9 @@ package org.araymond.joal.core.torrent.watcher;
 
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.araymond.joal.core.utils.TorrentFileCreator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +35,8 @@ public class TorrentFileWatcherTest {
         Files.createDirectory(torrentsPath);
     }
 
-    @After
-    @Before
+    @AfterEach
+    @BeforeEach
     public void setUpAndTearDown() throws IOException {
         resetDirectories();
     }
@@ -59,21 +59,21 @@ public class TorrentFileWatcherTest {
     public void shouldNotBuildWithNonExistingMonitoredFolder() {
         assertThatThrownBy(() -> new TorrentFileWatcher(new FileAlterationListenerAdaptor(), torrentsPath.resolve("nop")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Folder '" + torrentsPath.resolve("nop").toAbsolutePath() + "' does not exists.");
+                .hasMessageContaining("Folder [" + torrentsPath.resolve("nop").toAbsolutePath() + "] does not exists.");
     }
 
     @Test
     public void shouldNotBuildWithNullInterval() {
         assertThatThrownBy(() -> new TorrentFileWatcher(new FileAlterationListenerAdaptor(), torrentsPath, null))
                 .isInstanceOf(NullPointerException.class)
-                .hasMessageContaining("interval cannot be null");
+                .hasMessageContaining("intervalMs cannot be null");
     }
 
     @Test
     public void shouldNotBuildWithIntervalLessThan1() {
         assertThatThrownBy(() -> new TorrentFileWatcher(new FileAlterationListenerAdaptor(), torrentsPath, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("interval cannot be less than 1");
+                .hasMessageContaining("intervalMs cannot be less than 1");
     }
 
     @Test
